@@ -8,18 +8,14 @@ import redis.clients.jedis.JedisPooled;
 
 import java.util.Random;
 
-import static org.eclipse.jetty.util.StringUtil.toInt;
-
 public class Main {
     private final static int RATELIMIT = 1000;
     private final static int RATELIMITPERIOD = 10; // seconds
-
 
     private static final Logger log = LoggerFactory.getLogger(Main.class);
     private static final JedisPooled pool = new JedisPooled(System.getenv("REDIS_URL"), 6379);
 
     public static void main(String[] args) {
-
 
         var app = Javalin.create()
                 // Send every request through the rate limit check *before* handling the request
